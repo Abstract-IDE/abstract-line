@@ -7,7 +7,7 @@ function M.splitter(icon)
 end
 
 function M.vim_mode()
-	local mode = vim.api.nvim_exec("echo mode()", true)
+	local mode = vim.api.nvim_get_mode().mode
 	mode = string.upper(mode)
 	return " " .. "%#AbstractlineMode#" .. mode .. "%*" .. " "
 end
