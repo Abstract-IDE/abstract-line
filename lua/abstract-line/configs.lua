@@ -25,11 +25,13 @@ M.highlight = {
 	colors = {
 		mode = {
 			C = "#ffaa00",
-			n = "#178c94",
-			i = "#fd4848",
-			v = "#d1d1d1",
 			R = "#fd4848",
-			other = "#f12bff",
+			i = "#fd4848",
+			n = "#178c94",
+			v = "#d1d1d1",
+			V = "#d1d1d1",
+			["^V"] = "#d1d1d1",
+			other = "#ffaa00",
 		},
 		fg = "#b7b7b7",
 		bg = "#072b2c",

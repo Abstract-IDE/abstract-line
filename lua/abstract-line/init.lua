@@ -44,33 +44,23 @@ end
 function M.setup()
 	configs.highlight.init_highlight(true)
 
+	-- assing statusline
+	vim.o.statusline = "%!luaeval('AbstractLine()')"
+	-- pcall(vim.api.nvim_set_option_value, "statusline", AbstractLine(), { scope = "local" })
+
 	vim.api.nvim_create_augroup("AbstractLineAutoGroup", { clear = true })
 	vim.api.nvim_create_autocmd({
-		"BufWinEnter",
-		"BufWinLeave",
-		"BufWritePost",
-		"CursorHold",
-		"CursorHoldI",
-		"CursorMoved",
-		"CursorMovedI",
-		"FileWritePost",
-		"FocusGained",
-		"FocusLost",
-		"TabEnter",
-		"TabNewEntered",
-		"VimResized",
-		"WinClosed",
-		"WinEnter",
-		"WinLeave",
-		"WinNew",
-		"WinScrolled",
+		-- "BufWinLeave", "CursorHoldI", "CursorMovedI", "FileWritePost", "FocusGained", "FocusLost", "TabEnter",
+		-- "TabNewEntered", "VimResized", "WinClosed", "WinEnter", "WinLeave", "WinNew", "WinScrolled", "BufWritePost",
+		-- "TabClosed", "CursorHold", "BufFilePost", "BufWinEnter", "InsertEnter",
+		"ModeChanged",
+		"InsertLeave",
 	}, {
 		desc = "Load AbstractLine",
 		pattern = "*",
 		group = "AbstractLineAutoGroup",
 		callback = function()
 			configs.highlight.init_highlight(false)
-			pcall(vim.api.nvim_set_option_value, "statusline", AbstractLine(), { scope = "local" })
 		end,
 	})
 end
