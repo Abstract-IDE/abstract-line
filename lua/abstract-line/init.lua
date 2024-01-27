@@ -15,7 +15,8 @@ function AbstractLine()
 			end
 			return "%#AbstractlinePsedostring#" .. c .. "%*"
 		end
-		return "%f"
+		-- return "%f"
+		return "%#AbstractlineMode#" .. "%f" .. "%*"
 	end
 
 	return table.concat({
