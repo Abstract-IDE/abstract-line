@@ -16,30 +16,22 @@ function M.file_info()
 	local modified_flag = ""
 	local readonly_flag = ""
 	if vim.bo.modified then
-		modified_flag = "●"
+		modified_flag = "● "
 	end
 	if vim.bo.readonly then
-		readonly_flag = " 🔒"
+		readonly_flag = "🔒"
 	end
 
 	local file_name = vim.api.nvim_buf_get_name(0)
-	local file = vim.fn.pathshorten(vim.fn.fnamemodify(file_name, ":~:."))
-	file = readonly_flag .. file .. " " .. "%#AbstractlineFilemodify#" .. modified_flag .. "%*"
-
-	local filetype = vim.bo.filetype
-	if filetype == "alpha" then
-		file = filetype
-		filetype = ""
-	end
+	local file = readonly_flag .. vim.fn.pathshorten(vim.fn.fnamemodify(file_name, ":~:."))
 
 	local fileicon = funcs.get_filetype_icon()
 	if fileicon then
-		local icon_filetype = "%#AbstractlineFilenameIcon#" .. fileicon.icon .. " " .. filetype .. "%*"
-		filetype = "%#Abstractline#" .. "[" .. "%*" .. icon_filetype .. "%#Abstractline#" .. "] " .. "%*"
-		file = "%#AbstractlineFilename#" .. " " .. file .. "%*"
+		local icon_filetype = "%#AbstractlineFilenameIcon#" .. fileicon.icon .. " " .. "%*"
+		file = "%#AbstractlineFilename#" .. " " .. file .. " " .. icon_filetype .. "%*"
 	end
 
-	return file .. filetype
+	return file .. "%#AbstractlineFilemodify#" .. modified_flag .. "%*"
 end
 
 function M.virtualenv_status()
@@ -135,7 +127,7 @@ function M.line_info()
 	end
 
 	local loc_percentage = math.ceil((100 * curr_line_num) / loc)
-	return string.format("  %2d:%-2d- %d(%2d%%%%)", curr_line_num, line_col, loc, loc_percentage)
+	return string.format("  %2d%%%%(%d) ℂ%2d", loc_percentage, loc, line_col)
 end
 
 function M.lsp_diagnostics_count()
@@ -161,7 +153,6 @@ end
 
 function M.lsp_provider()
 	local msg = ""
-	local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
 	local clients = vim.lsp.get_active_clients()
 	if next(clients) == nil then
 		return msg
@@ -184,21 +175,31 @@ function M.lsp_provider()
 		sign_removed = "%#AbstractlineLSPDiagInfo#" .. "  " .. tostring(count_info) .. "%*"
 	end
 	if count_hint > 0 then
-		sign_hint = "%#AbstractlineLSPDiagHint#" .. " 󰌵" .. tostring(count_hint) .. "%*"
+		sign_hint = "%#AbstractlineLSPDiagHint#" .. " " .. tostring(count_hint) .. "%*"
 	end
 
-	for _, client in ipairs(clients) do
-		local filetypes = client.config.filetypes
-		if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-			if client.name ~= "null-ls" then
-				local sign_count = sign_added .. sign_changed .. sign_removed .. sign_hint
-				local msg1 = sign_count .. " " .. "%#abstractlineLsprovider#" .. "LSP[" .. "%*"
-				local msg2 = "%#abstractlineLsprovider#" .. "]" .. "%*"
-				msg = msg1 .. "%#abstractlineLsprovidername#" .. client.name .. "%*" .. msg2
-				goto final
-			end
+	-- local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+	-- for _, client in ipairs(clients) do
+	-- 	local filetypes = client.config.filetypes
+	-- 	if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+	-- 		if client.name ~= "null-ls" then
+	-- 			local sign_count = sign_added .. sign_changed .. sign_removed .. sign_hint
+	-- 			local msg1 = sign_count .. " " .. "%#AbstractlineLsprovidername#" .. "  " .. "%*"
+	-- 			msg = msg1 .. "%#AbstractlineLsprovidername#" .. client.name .. "%*"
+	-- 			goto final
+	-- 		end
+	-- 	end
+	-- end
+	local _clients = {}
+	for _, client in pairs(clients) do
+		if client.name ~= "null-ls" then
+			_clients[#_clients + 1] = client.name
 		end
 	end
+
+	local sign_count = sign_added .. sign_changed .. sign_removed .. sign_hint
+	local msg1 = sign_count .. " " .. "%#AbstractlineLsprovidername#" .. "  " .. "%*"
+	msg = msg1 .. "%#AbstractlineLsprovidername#" .. table.concat(_clients, "+") .. "%*"
 
 	::final::
 	return msg

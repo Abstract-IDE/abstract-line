@@ -33,8 +33,8 @@ M.highlight = {
 			["^V"] = "#d1d1d1",
 			other = "#ffaa00",
 		},
-		fg = "#b7b7b7",
-		bg = "#072b2c",
+		fg = "#757575",
+		bg = "#041a1a",
 	},
 
 	init_highlight = function(initial)
@@ -63,16 +63,15 @@ M.highlight = {
 		sethighlight(0, "AbstractlineFilemodify", { fg = "#ff0000", bg = bg })
 		sethighlight(0, "AbstractlineFilename", { fg = fg, bg = bg, italic = true })
 		sethighlight(0, "AbstractlineFilesize", { fg = fg, bg = global_bg })
-		sethighlight(0, "AbstractlineGit", { fg = "#b44200", bg = global_bg, bold = true })
-		sethighlight(0, "AbstractlineGitAdded", { fg = "#4c7f33", bg = global_bg, bold = true })
-		sethighlight(0, "AbstractlineGitChanged", { fg = "#985401", bg = global_bg, bold = true })
-		sethighlight(0, "AbstractlineGitRemoved", { fg = "#d10000", bg = global_bg, bold = true })
+		sethighlight(0, "AbstractlineGit", { fg = "#913500", bg = global_bg, bold = true })
+		sethighlight(0, "AbstractlineGitAdded", { fg = "#3e682a", bg = global_bg, bold = true })
+		sethighlight(0, "AbstractlineGitChanged", { fg = "#913500", bg = global_bg, bold = true })
+		sethighlight(0, "AbstractlineGitRemoved", { fg = "#bd1919", bg = global_bg, bold = true })
 		sethighlight(0, "AbstractlineLSPDiagError", { fg = "#a81818", bg = global_bg })
 		sethighlight(0, "AbstractlineLSPDiagHint", { fg = "#336481", bg = global_bg })
 		sethighlight(0, "AbstractlineLSPDiagInfo", { fg = "#812900", bg = global_bg })
 		sethighlight(0, "AbstractlineLSPDiagWarn", { fg = "#5d5d00", bg = global_bg })
-		sethighlight(0, "AbstractlineLsprovider", { fg = fg, bg = global_bg })
-		sethighlight(0, "AbstractlineLsprovidername", { fg = "#51A0CF", bg = global_bg })
+		sethighlight(0, "AbstractlineLsprovidername", { fg = "#757575", bg = global_bg })
 		sethighlight(0, "AbstractlinePsedostring", { fg = editor_bg, bg = editor_bg})
 		sethighlight(0, "AbstractlineSearch", { fg = "#abab18", bg = global_bg })
 		sethighlight(0, "AbstractlineSplitter", { fg = bg, bg = global_bg })

@@ -22,9 +22,9 @@ function AbstractLine()
 	return table.concat({
 		-- ━━━━━━━━━━━━━━━━❰ LEFT ❱━━━━━━━━━━━━━━━━ --
 		components.vim_mode(),
-		components.splitter(""),
+		-- components.splitter(""),
 		components.file_info(),
-		components.splitter(""),
+		-- components.splitter(""),
 		components.get_filesize(),
 		components.virtualenv_status(),
 		components.git_status(),
