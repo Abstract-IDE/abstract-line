@@ -108,7 +108,7 @@ function M.line_info()
 	local loc = vim.api.nvim_buf_line_count(0) -- total lines of code in current file
 	local line_col = vim.fn.col(".")
 	local loc_percent = math.ceil((100 * curr_line_num) / loc)
-	return string.format("  %2d%%%%(%d) ℂ%2d", loc_percent, loc, line_col)
+	return string.format(" ℓ %2d%%%%(%d) ℂ%2d", loc_percent, loc, line_col)
 end
 
 function M.lsp_diagnostics_count()
