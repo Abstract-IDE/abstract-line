@@ -158,7 +158,9 @@ function M.lsp_provider()
 			_clients[#_clients + 1] = client.name
 		end
 	end
-
+	if vim.tbl_isempty(_clients) then
+		return ""
+	end
 	return signs .. " " .. "%#AbstractlineLsprovidername#" .. "  " .. table.concat(_clients, "+") .. "%*"
 end
 
