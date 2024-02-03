@@ -9,11 +9,8 @@ function AbstractLine()
 	if vim.tbl_contains(configs.exclude_filetypes, filetype) then
 		-- a hack to make statusline line invisiable on alpha
 		if filetype == "alpha" then
-			local c = "--------------------------------------"
-			for _ = 1, 4 do
-				c = c .. c
-			end
-			return "%#AbstractlinePsedostring#" .. c .. "%*"
+			local c = "____________________________________________________________________"
+			return "%#AbstractlinePsedostring#" .. c .. c .. c .. c .. "%*"
 		end
 		-- return "%f"
 		return "%#AbstractlineMode#" .. "%f" .. "%*"
@@ -56,7 +53,7 @@ function M.setup()
 		-- "TabClosed", "CursorHold", "BufFilePost", "BufWinEnter", "InsertEnter",
 		"ModeChanged",
 		"InsertLeave",
-		"ColorScheme"
+		"ColorScheme",
 	}, {
 		desc = "Load AbstractLine",
 		pattern = "*",
