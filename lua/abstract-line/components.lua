@@ -25,8 +25,7 @@ function M.file_info()
 
 	local fileicon = funcs.get_filetype_icon()
 	if fileicon then
-		local icon_filetype = "%#AbstractlineFilenameIcon#" .. fileicon.icon .. " " .. "%*"
-		file = "%#AbstractlineFilename#" .. " " .. file .. " " .. icon_filetype .. "%*"
+		file = "%#AbstractlineFilename#" .. file .. " " .. fileicon.icon .. " " .. "%*"
 	end
 
 	return file .. "%#AbstractlineFilemodify#" .. modified_flag .. "%*"
