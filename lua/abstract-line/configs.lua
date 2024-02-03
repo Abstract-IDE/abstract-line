@@ -39,10 +39,10 @@ M.highlight = {
 
 	init_highlight = function(initial)
 		local fg = M.highlight.colors.fg
-		local bg = M.highlight.colors.bg
+		local bg = vim.api.nvim_get_hl(0, { name = "StatusLine" }).bg
 		local global_bg = vim.api.nvim_get_hl(0, { name = "StatusLine" }).bg
 		local mode_color = M.highlight.colors.mode
-		local editor_bg =  vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+		local editor_bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
 
 		local mode = vim.api.nvim_exec("echo mode()", true) -- get mode (normal/insert/visual/command)
 		local icon_color = funcs.get_filetype_icon().icon_color
@@ -72,7 +72,7 @@ M.highlight = {
 		sethighlight(0, "AbstractlineLSPDiagInfo", { fg = "#812900", bg = global_bg })
 		sethighlight(0, "AbstractlineLSPDiagWarn", { fg = "#5d5d00", bg = global_bg })
 		sethighlight(0, "AbstractlineLsprovidername", { fg = "#757575", bg = global_bg })
-		sethighlight(0, "AbstractlinePsedostring", { fg = editor_bg, bg = editor_bg})
+		sethighlight(0, "AbstractlinePsedostring", { fg = editor_bg, bg = editor_bg })
 		sethighlight(0, "AbstractlineSearch", { fg = "#abab18", bg = global_bg })
 		sethighlight(0, "AbstractlineSplitter", { fg = bg, bg = global_bg })
 		sethighlight(0, "AbstractlineVirtualEnv", { fg = "#b44200", bg = global_bg, bold = true })

@@ -56,6 +56,7 @@ function M.setup()
 		-- "TabClosed", "CursorHold", "BufFilePost", "BufWinEnter", "InsertEnter",
 		"ModeChanged",
 		"InsertLeave",
+		"ColorScheme"
 	}, {
 		desc = "Load AbstractLine",
 		pattern = "*",
