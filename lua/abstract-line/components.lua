@@ -126,6 +126,14 @@ function M.lsp_diagnostics_count()
 	}
 end
 
+function M.grapple()
+	local _, s = pcall(require, "grapple")
+	if not _ then
+		return ""
+	end
+	return "%#AbstractlineFilename#" .. " " .. tostring(s.statusline()) .. "%*"
+end
+
 function M.lsp_provider()
 	local clients = vim.lsp.get_active_clients()
 	if next(clients) == nil then

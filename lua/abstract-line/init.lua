@@ -25,6 +25,7 @@ function AbstractLine()
 		components.get_filesize(),
 		components.virtualenv_status(),
 		components.git_status(),
+		components.grapple(),
 
 		-- ━━━━━━━━━━━━━━━❰ MIDDLE ❱━━━━━━━━━━━━━━━ --
 		"%=",
