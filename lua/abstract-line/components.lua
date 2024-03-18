@@ -131,7 +131,7 @@ function M.grapple()
 	if not _ then
 		return ""
 	end
-	return "%#AbstractlineFilename#" .. " " .. tostring(s.statusline()) .. "%*"
+	return "%#AbstractlineFilename#" .. " " .. tostring(s.statusline() or "") .. "%*"
 end
 
 function M.lsp_provider()
