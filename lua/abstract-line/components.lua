@@ -131,7 +131,8 @@ function M.grapple()
 	if not _ then
 		return ""
 	end
-	return "%#AbstractlineFilename#" .. " " .. tostring(s.statusline() or "") .. "%*"
+	local display = tostring(s.statusline() == "󰛢 " and "" or s.statusline())
+	return "%#AbstractlineFilename#" .. " " .. display .. "%*"
 end
 
 function M.lsp_provider()
