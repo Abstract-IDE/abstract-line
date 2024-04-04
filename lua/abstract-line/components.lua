@@ -24,8 +24,9 @@ function M.file_info()
 	local file = readonly_flag .. vim.fn.pathshorten(vim.fn.fnamemodify(file_name, ":~:."))
 
 	local fileicon = funcs.get_filetype_icon()
+	local filetype = vim.bo.filetype
 	if fileicon then
-		file = "%#AbstractlineFilename#" .. file .. " " .. fileicon.icon .. " " .. "%*"
+		file = "%#AbstractlineFilename#" .. file .. " " .. fileicon.icon .. " " .. filetype .. " " .. "%*"
 	end
 
 	return file .. "%#AbstractlineFilemodify#" .. modified_flag .. "%*"
