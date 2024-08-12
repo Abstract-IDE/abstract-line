@@ -54,11 +54,6 @@ M.highlight = {
 			bold = true,
 		})
 
-		-- above highlights are dynamic so they be loaded eveytime.
-		if not initial then
-			return
-		end
-
 		sethighlight(0, "Abstractline", { fg = fg, bg = bg })
 		sethighlight(0, "AbstractlineFilemodify", { fg = "#ff0000", bg = bg })
 		sethighlight(0, "AbstractlineFilename", { fg = fg, bg = bg, italic = true })

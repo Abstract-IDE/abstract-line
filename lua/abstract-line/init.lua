@@ -59,8 +59,11 @@ function M.setup()
 		desc = "Load AbstractLine",
 		pattern = "*",
 		group = "AbstractLineAutoGroup",
-		callback = function()
-			configs.highlight.init_highlight(false)
+		callback = function(hook)
+			-- re-apply highlight on color scheme change
+			if hook.event == "ColorScheme" then
+				configs.highlight.init_highlight()
+			end
 		end,
 	})
 end
