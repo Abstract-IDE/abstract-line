@@ -41,7 +41,7 @@ function AbstractLine()
 end
 
 function M.setup()
-	configs.highlight.init_highlight(true)
+	configs.highlight.init_highlight()
 
 	-- assing statusline
 	vim.o.statusline = "%!luaeval('AbstractLine()')"
