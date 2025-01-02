@@ -35,6 +35,7 @@ function AbstractLine()
 		"%=",
 		components.search_info(),
 		"%#Abstractline#",
+		components.buffer_count(),
 		components.line_info(),
 		"%*",
 	})
