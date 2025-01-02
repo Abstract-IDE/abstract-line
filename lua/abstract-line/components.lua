@@ -112,11 +112,6 @@ function M.line_info()
 	return string.format(" ℓ=%2d%%%%(%d) ℂ%2d", loc_percent, loc, line_col)
 end
 
-function M.buffer_count()
-	local buffers = vim.api.nvim_list_bufs()
-	return "BC=" .. tostring(#buffers)
-end
-
 function M.lsp_diagnostics_count()
 	local diagnostic = vim.diagnostic
 	local error = diagnostic.severity.ERROR
