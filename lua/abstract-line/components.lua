@@ -137,7 +137,7 @@ function M.grapple()
 end
 
 function M.lsp_provider()
-	local clients = vim.lsp.get_clients()
+	local clients = vim.lsp.get_clients({ bufnr = vim.api.nvim_get_current_buf() })
 	if next(clients) == nil then
 		return ""
 	end
