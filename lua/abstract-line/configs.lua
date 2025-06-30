@@ -44,7 +44,7 @@ M.highlight = {
 		local mode_color = M.highlight.colors.mode
 		local editor_bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
 
-		local mode = vim.api.nvim_exec("echo mode()", true) -- get mode (normal/insert/visual/command)
+		local mode = vim.api.nvim_get_mode().mode -- get mode (normal/insert/visual/command)
 		local icon_color = funcs.get_filetype_icon().icon_color
 
 		sethighlight(0, "AbstractlineFilenameIcon", { fg = icon_color, bg = bg })
